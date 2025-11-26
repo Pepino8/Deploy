@@ -8,6 +8,10 @@ const upload = multer({dest: 'uploads/'});
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Servidor funcionando en Render");
+});
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
