@@ -1,28 +1,20 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-
-const fs = require('fs');
-
-const multer = require('multer');
-const upload = multer({dest: 'uploads/'});
-
+app.use(cors());
 app.use(express.json());
 
+// --- Funcionalidad ejemplo ---
 app.get("/", (req, res) => {
-  res.send("Servidor funcionando en Render");
+  res.send("Servidor funcionando correctamente en Render 🚀");
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+// Endpoint funcional
+app.get("/saludo/:nombre", (req, res) => {
+  const nombre = req.params.nombre;
+  res.json({ mensaje: `Hola, ${nombre}! Bienvenido a Render.` });
 });
 
-app.post('/subirPerfil', upload.single('imagenPerfil'), (req,res) => {
-    fs.rename(req.file.path, `uploads/${req.file.originalname}`, (err) => {
-        if(err) {
-            return res.status(500).send(`Error al guardar la imagen`, err);
-        }
-        res.send(`Imagen subida con exito`);
-    });
-});
-
-app.listen(3000, () => console.log(`Servidor en http://localhost:3000`));
+// Puerto dinámico (Render usa process.env.PORT)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Servidor corriendo en puerto " + PORT));
