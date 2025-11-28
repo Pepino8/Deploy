@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Deploy Insano</title>
+</head>
+<body>
+
+  <h1>Dame 2 numeros</h1>
+
+  <form id="numbersForm" method="POST" action="/hacerSuma">
+    <label for="num1">Número 1</label>
+    <input id="num1" name="num1" type="number" required>
+
+    <label for="num2">Número 2</label>
+    <input id="num2" name="num2" type="number" required>
+
+    <button type="submit">Calcular</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
